@@ -5,8 +5,6 @@ export async function POST(request: Request) {
   // weatherdata in the body of the POST req
   const { weatherData } = await request.json();
 
-  console.log("WEATHER DATA", weatherData);
-
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo", // change to 'gpt-4' if you have access to it
     temperature: 0.8,
@@ -27,8 +25,6 @@ export async function POST(request: Request) {
   });
 
   const { data } = response;
-
-  console.log("DATA IS: ", data);
 
   return NextResponse.json(data.choices[0].message);
 }
